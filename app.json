@@ -1,25 +1,45 @@
 {
   "expo": {
-    "name": "RecieptIq-reactnative",
-    "slug": "RecieptIq-reactnative",
+    "name": "ReceiptIQ",
+    "slug": "receiptiq-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "receiptiq",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#FBF7EE",
+    "description": "Demo project — a receipt/listing analyzer that flags overpriced items and hidden subscription/fee traps. Pricing data is illustrative, not live-verified.",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.receiptiq.mobile",
+      "infoPlist": {
+        "NSCameraUsageDescription": "ReceiptIQ uses the camera to photograph a receipt so it can be scanned.",
+        "NSPhotoLibraryUsageDescription": "ReceiptIQ needs photo access to let you pick a receipt image to scan."
+      }
     },
     "android": {
+      "package": "com.receiptiq.mobile",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "backgroundColor": "#FBF7EE",
+        "foregroundImage": "./assets/adaptive-icon-foreground.png"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#FBF7EE"
+        }
+      ]
+    ]
   }
 }
