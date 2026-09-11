@@ -4,10 +4,16 @@
  * sizes. Run with: npm run build:assets
  *
  * Sources (edit these, not the outputs):
- *   assets/icon-source.svg             -> assets/icon.png (1024x1024)
- *   assets/icon-foreground-source.svg  -> assets/adaptive-icon-foreground.png (1024x1024, transparent)
- *   assets/icon-source.svg             -> assets/splash.png (1284x1284, centered on paper cream)
- *   assets/icon-source.svg             -> assets/favicon.png (48x48, web tab icon)
+ *   design/icon-source.svg             -> assets/icon.png (1024x1024)
+ *   design/icon-foreground-source.svg  -> assets/adaptive-icon-foreground.png (1024x1024, transparent)
+ *   design/icon-source.svg             -> assets/splash.png (1284x1284, centered on paper cream)
+ *   design/icon-source.svg             -> assets/favicon.png (48x48, web tab icon)
+ *
+ * Sources live outside assets/ (in design/) rather than alongside the app's
+ * real image assets — Expo Snack's git importer scans the whole repo for
+ * binary-looking files to pre-populate its asset store, and chokes on raw
+ * SVGs sitting there (they're not consumed by Metro's asset pipeline at
+ * runtime anyway, only read here at build time).
  */
 import { readFile, mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -21,8 +27,8 @@ const PAPER_CREAM = "#FBF7EE";
 async function main() {
   await mkdir(p("assets"), { recursive: true });
 
-  const iconSvg = await readFile(p("assets/icon-source.svg"));
-  const fgSvg = await readFile(p("assets/icon-foreground-source.svg"));
+  const iconSvg = await readFile(p("design/icon-source.svg"));
+  const fgSvg = await readFile(p("design/icon-foreground-source.svg"));
 
   await sharp(iconSvg, { density: 384 })
     .resize(1024, 1024, { fit: "contain", background: PAPER_CREAM })

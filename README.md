@@ -100,9 +100,11 @@ npx eas submit --platform android
 
 ## Regenerating icons/splash
 
-`scripts/generate-assets.mjs` rasterizes `assets/icon-source.svg` and
-`assets/icon-foreground-source.svg` (both ported from the web repo's `public/icon.svg`) into the
-PNGs `app.json` references:
+`scripts/generate-assets.mjs` rasterizes `design/icon-source.svg` and
+`design/icon-foreground-source.svg` (both ported from the web repo's `public/icon.svg`) into the
+PNGs `app.json` references. These SVG sources live outside `assets/` deliberately — Expo Snack's
+git importer scans the whole repo for binary-looking files and chokes on raw SVGs there, even
+though Metro never touches them at runtime (they're only read here, at build time):
 
 ```bash
 npm run build:assets
@@ -143,8 +145,11 @@ receiptiq-mobile/
 │   │   ├── price-db-core.json   # bundled offline subset (ported unchanged)
 │   │   ├── price-db.json        # full dataset, used only by the ported unit tests
 │   │   └── sample-receipts.json # ported unchanged
-│   ├── icon.png, adaptive-icon-foreground.png, splash.png, favicon.png
-│   └── logo/receiptiq-wordmark.svg
+│   └── icon.png, adaptive-icon-foreground.png, splash.png, favicon.png
+├── design/                   # SVG sources — never imported by app code, kept out of assets/
+│   ├── icon-source.svg          # so Snack's git importer doesn't choke trying to upload them
+│   ├── icon-foreground-source.svg
+│   └── receiptiq-wordmark.svg
 ├── scripts/generate-assets.mjs
 ├── app.json / eas.json
 └── .env.example
