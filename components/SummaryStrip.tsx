@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import type { ReceiptSummary } from "../lib/types";
-import { Icon } from "./Icon";
+import { Icon, type IconName } from "./Icon";
 import { colors, fonts, radius, spacing } from "../theme";
 
 export function SummaryStrip({ summary }: { summary: ReceiptSummary }) {
@@ -20,7 +20,7 @@ function Cell({
   count,
   label,
 }: {
-  icon: Parameters<typeof Icon>[0]["name"];
+  icon: IconName;
   tone: string;
   count: number;
   label: string;

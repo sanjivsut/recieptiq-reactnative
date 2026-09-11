@@ -115,7 +115,10 @@ npm run build:assets
 ```
 receiptiq-mobile/
 ├── App.tsx                  # root: font loading, splash, bottom tab navigator
-├── index.ts                 # registerRootComponent entry (local dev / EAS builds)
+├── entry.ts                 # registerRootComponent entry (local dev / EAS builds — deliberately
+│                               not named index.ts/js, since Snack's own runtime treats a literal
+│                               index.ts/js file as its entry regardless of package.json's "main",
+│                               which would otherwise shadow App.tsx's default export)
 ├── screens/
 │   ├── ScanScreen.tsx        # sample picker + camera/upload + result (primary screen)
 │   ├── HistoryScreen.tsx     # past scans, AsyncStorage-backed
