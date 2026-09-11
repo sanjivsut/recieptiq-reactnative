@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ReceiptIQ",
-    "slug": "receiptiq-mobile",
+    "slug": "recieptiq-reactnative",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -43,7 +43,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "7c53173c-3e1b-4605-84d2-2ad7bb7cb37c"
+        "projectId": "6ec0c982-4a0b-4a22-ab5b-36fd8d1a5445"
       }
     },
     "owner": "sanjivsutar"
