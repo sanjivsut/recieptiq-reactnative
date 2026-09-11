@@ -23,6 +23,7 @@ import { Icon } from "../components/Icon";
 import { SummaryStrip } from "../components/SummaryStrip";
 import { ReceiptView } from "../components/ReceiptView";
 import { EngineBadge } from "../components/EngineBadge";
+import { WarningModal } from "../components/WarningModal";
 import { colors, fonts, radius, spacing } from "../theme";
 
 const SAMPLES = (sampleData as { samples: SampleReceipt[] }).samples;
@@ -199,14 +200,18 @@ export function ScanScreen() {
         <View style={styles.panel}>
           <ActivityIndicator color={colors.inkNavy} />
           <Text style={styles.progressText}>Analyzing with AI…</Text>
+          <Text style={styles.hint}>This can take up to a minute on the free tier — hang tight.</Text>
         </View>
       ) : null}
 
-      {errorMsg ? (
-        <View style={styles.section}>
-          <Text style={styles.notice}>{errorMsg}</Text>
-        </View>
-      ) : null}
+      <WarningModal
+        visible={!!errorMsg}
+        message={errorMsg ?? ""}
+        onClose={() => {
+          setErrorMsg(null);
+          setPhase("idle");
+        }}
+      />
 
       {result ? (
         <View style={styles.section}>
