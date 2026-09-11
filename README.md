@@ -5,7 +5,8 @@ receipt/listing analyzer that flags overpriced items and hidden subscription/fee
 **portfolio demo**: the matching/flagging logic is real and unit-tested; the price data is a
 curated dataset, not a live API.
 
-Built with Expo (SDK 57) + TypeScript, structured specifically so it can be **imported straight
+Built with Expo (SDK 54 — pinned deliberately to Snack's current supported ceiling, see below) +
+TypeScript, structured specifically so it can be **imported straight
 into [Expo Snack](https://snack.expo.dev) from this GitHub repo**.
 
 ## Why this isn't a byte-for-byte port of the original build spec
@@ -62,8 +63,9 @@ server-side in the web app and is never part of this bundle.
 ## Importing into Expo Snack
 
 1. Push this repo to GitHub (public, or a private repo Snack can access).
-2. Go to [snack.expo.dev](https://snack.expo.dev) → **Import git repository** → paste the repo URL.
-3. Snack detects `App.tsx` at the root automatically — no extra config needed.
+2. Go to [snack.expo.dev](https://snack.expo.dev), find **"Project"** in the left file panel, click
+   the **"…"** (three dots) next to it, and choose **Import git repository**.
+3. Paste the repo URL and import. Snack detects `App.tsx` at the root automatically.
 4. If you want AI-powered real-photo scanning inside the Snack preview, add
    `EXPO_PUBLIC_API_BASE_URL` under the Snack's environment/config (or just hardcode it temporarily
    in `services/ocr-ai.ts` for a quick demo — don't commit a hardcoded value back to `main`).
@@ -73,6 +75,24 @@ server-side in the web app and is never part of this bundle.
 `launchCameraAsync`) works in the Expo Go / device preview but not in Snack's in-browser web
 preview (no camera access from an iframe); use "Upload image" there instead, or scan the QR code
 into Expo Go on a real device to test the camera path.
+
+### If "Import git repository" fails with an asset-upload error
+
+As of this writing, Snack's git-import feature has an intermittent server-side bug unrelated to
+this repo's content — it fails with `Error parsing files: Failed to upload file asset (... "$":
+Required ...)` even though every individual file uploads fine via Snack's own public API. This
+looks like a live issue in Expo's `snackager` service, not something fixable from here (worth
+checking [expo/snack issues](https://github.com/expo/snack/issues) for updates, or filing a new
+one with that exact error text).
+
+A verified-working Snack built from this exact repo state (proving the app itself runs correctly
+once past the import bug) is here: **https://snack.expo.dev/KVe3WKwCB4kPgVtndkIGR** — note it's
+unsaved/anonymous and may expire; re-import once Expo's bug is fixed, or ask for a fresh one.
+
+Also note: Snack's actual maximum supported SDK is **54**, not the project's SDK — this repo is
+pinned to SDK 54 versions of Expo/React Native specifically so it runs in Snack once imported;
+don't `expo upgrade` past 54 without checking Snack's current ceiling first, or the preview will
+silently downgrade and get stuck on "Connecting…" forever.
 
 ## Testing
 
