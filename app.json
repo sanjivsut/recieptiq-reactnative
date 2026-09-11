@@ -40,6 +40,12 @@
           "backgroundColor": "#FBF7EE"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7c53173c-3e1b-4605-84d2-2ad7bb7cb37c"
+      }
+    },
+    "owner": "sanjivsutar"
   }
 }

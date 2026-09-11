@@ -52,7 +52,7 @@ npx expo start          # then press i / a / w, or scan the QR code in Expo Go
 ```
 
 Copy `.env.example` to `.env` and set `EXPO_PUBLIC_API_BASE_URL` to your deployed ReceiptIQ web
-app's origin (e.g. `https://receiptiq.vercel.app`) to enable real-photo AI scanning. Without it,
+app's origin (e.g. `https://reciept-iq.vercel.app`) to enable real-photo AI scanning. Without it,
 the app still runs fully: the sample picker and offline price matching work with zero network, and
 a real-photo scan shows a calm "AI scanning isn't set up" message instead of erroring.
 

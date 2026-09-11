@@ -7,20 +7,26 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://receiptiq.vercel.app"
+        "EXPO_PUBLIC_API_BASE_URL": "https://reciept-iq.vercel.app"
       }
     },
     "preview": {
       "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://receiptiq.vercel.app"
+        "EXPO_PUBLIC_API_BASE_URL": "https://reciept-iq.vercel.app"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://receiptiq.vercel.app"
+        "EXPO_PUBLIC_API_BASE_URL": "https://reciept-iq.vercel.app"
       }
     }
   },
